@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   get 'about' => 'welcome#about'
 
+  authenticated :user do
+    root 'users#show', as: :authenticated_root
+  end
+  
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
