@@ -6,14 +6,25 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# Create Users
 10.times do
   User.create!(
           email: Faker::Internet.email,
-          password: "password",
-          password_confirmation: "password",
+          password: "Flamingofir3",
+          password_confirmation: "Flamingofir3",
           confirmed_at: Time.now
+  )
+end
+users = User.all
+
+# Create items
+100.times do
+  Item.create!(
+          user: users.sample,
+          name: Faker::WorldOfWarcraft.hero
   )
 end
 
 puts "Seed finished"
 puts "#{User.count} users created"
+puts "#{Item.count} items created"
