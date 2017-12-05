@@ -12,7 +12,8 @@
     <br>
     <ul>
       <% @items.each do |item| %>
-       <li><h4> <%= item.name %> </h4></li>
+
+       <li><h4> <%= item.name %> <%= link_to "", item, method: :delete, class: 'glyphicon glyphicon-ok' %></h4></li>
     <% end %>
     </ul>
   </div>

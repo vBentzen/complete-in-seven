@@ -12,6 +12,19 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    @user = current_user
+    item = @user.items.find(params[:id])
+
+    if item.destroy
+      flash[:notice] = "Item is completed and remove from list. GOOD JOB!"
+      redirect_to root_path
+    else
+      flash[:alert] = "Item Couldn't be completed, please try again!"
+      redirect_to root_path
+    end
+  end
+
   def item_params
     params.require(:item).permit(:name)
   end
