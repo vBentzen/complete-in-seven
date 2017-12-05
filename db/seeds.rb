@@ -21,7 +21,8 @@ users = User.all
 100.times do
   Item.create!(
           user: users.sample,
-          name: Faker::WorldOfWarcraft.hero
+          name: Faker::WorldOfWarcraft.hero,
+          created_at: "2017-11-3 11:11:00"
   )
 end
 
