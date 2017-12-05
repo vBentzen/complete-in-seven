@@ -1,4 +1,22 @@
-<h1>Hi there <%= @user.email %></h1>
-<% @items.each do |item| %>
-  <h4> item.name </h4>
-<% end %>
+
+
+<row>
+  <div class="col-md-12">
+    <h1>Hi there <%= @user.email %></h1>
+  </div>
+</row>
+
+<row>
+  <div class="col-md-6">
+    <h3>Your current to do items are:</h3>
+    <br>
+    <ul>
+      <% @items.each do |item| %>
+       <li><h4> <%= item.name %> </h4></li>
+    <% end %>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <%= render 'items/form', item: Item.new, post: @post %>
+  </div>
+</row>
