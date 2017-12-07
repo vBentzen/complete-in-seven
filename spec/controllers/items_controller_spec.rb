@@ -13,11 +13,11 @@ RSpec.describe ItemsController, type: :controller do
       sign_in user
     end
     it 'should increase the number of Item by 1' do
-      expect{post :create, user_id: user.id, item: {name: Faker::StarWars.character, user: user } }.to change(Item,:count).by(1)
+      expect{post :create, item: {name: Faker::StarWars.character, user: user } }.to change(Item,:count).by(1)
     end
 
     it 'should redirect to the user profile show view' do
-      post :create, user_id: user.id, item: {name: Faker::StarWars.character, user: user}
+      post :create, item: {name: Faker::StarWars.character, user: user}
       expect(response).to redirect_to(root_path)
     end
   end
@@ -28,7 +28,7 @@ RSpec.describe ItemsController, type: :controller do
     end
     it 'should delete the item' do
       delete :destroy, id: item.id
-      expect(Item.count).to eq 1
+      expect(Item.count).to eq 0
     end
 
     it 'should redirect to the user profile show view' do
