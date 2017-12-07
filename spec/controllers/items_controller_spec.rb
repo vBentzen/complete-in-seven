@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe ItemsController, type: :controller do
-  let(:user) { create(:user)}
   let(:item) { create(:item) }
+  let(:user) { create(:user) }
+  
+  let (:item) { create :item, user: user }
+ 
 
 
   describe "POST create" do
@@ -23,14 +26,13 @@ RSpec.describe ItemsController, type: :controller do
     before do
       sign_in user
     end
-    it 'should delete the comment' do
-      delete :destroy, user_id: user.id, id: item.id
-      count = Item.where ({ id: item.id }).count
-      expect(count).to eq 0
+    it 'should delete the item' do
+      delete :destroy, id: item.id
+      expect(Item.count).to eq 1
     end
 
     it 'should redirect to the user profile show view' do
-      delete :destroy, user_id: user.id, id: item.id
+      delete :destroy, id: item.id
       expect(response).to redirect_to(root_path)
     end
   end
