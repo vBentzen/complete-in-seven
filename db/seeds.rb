@@ -22,7 +22,7 @@ users = User.all
   Item.create!(
           user: users.sample,
           name: Faker::WorldOfWarcraft.hero,
-          created_at: "2017-12-5 11:11:00"
+          created_at: "2017-11-29 10:31:00"
   )
 end
 
