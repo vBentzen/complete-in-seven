@@ -20,7 +20,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-
 every 1.minute do
   rake "complete-in-seven:todo:delete_items"
   command "echo 'it works'"

@@ -12,7 +12,7 @@ RSpec.describe Item, type: :model do
   it { is_expected.to validate_length_of(:name).is_at_least(3) }
 
   describe "attributes" do
-    it 'should have a name attribute' do
+    it 'should have a name and completed attribute' do
       expect(item).to have_attributes(name: item.name)
     end
   end  
