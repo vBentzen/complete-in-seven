@@ -1,10 +1,10 @@
-<row>
+<div class="row">
   <div class="col-md-12">
     <h1>Hi there <%= @user.email %></h1>
   </div>
-</row>
+</div>
 
-<row>
+<div class="row">
   <div class="col-md-4">
     <h3>Your current to do items are:</h3>
     <br>
@@ -20,4 +20,15 @@
   <div class="col-md-6 pull-right">
     <%= render 'items/form', item: Item.new, post: @post %>
   </div>
-</row>
+  <div class="col-md-6 pull-right">
+    <h3>Previously completed items</h3>
+    <br>
+    <ul>
+      <% @items.each do |item| %>
+        <% if item.completed == true %>
+          <li><h4> <%= item.name %> </h4></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>
