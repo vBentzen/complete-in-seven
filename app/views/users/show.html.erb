@@ -10,9 +10,10 @@
     <br>
     <ul>
       <% @items.each do |item| %>
-
-       <li><h4> <%= item.name %> <%= link_to "", item, method: :delete, class: 'glyphicon glyphicon-ok pull-right' %></h4></li>
-       <%= distance_of_time_in_words(Time.now, item.created_at + 7.days, include_seconds: true) %> left to complete task
+        <% if item.completed == false %>
+          <li><h4> <%= item.name %> <%= link_to "", item, method: :put, class: 'glyphicon glyphicon-ok pull-right' %></h4></li>
+          <%= distance_of_time_in_words(Time.now, item.created_at + 7.days, include_seconds: true) %> left to complete task
+        <% end %>
     <% end %>
     </ul>
   </div>

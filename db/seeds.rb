@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Create Users
-10.times do
+1.times do
   User.create!(
           email: Faker::Internet.email,
           password: "Flamingofir3",
@@ -18,11 +18,12 @@ end
 users = User.all
 
 # Create items
-100.times do
+3.times do
   Item.create!(
           user: users.sample,
           name: Faker::WorldOfWarcraft.hero,
-          created_at: "2017-11-29  10:31:00"
+          created_at: "2017-11-29  10:31:00",
+          completed: false
   )
 end
 

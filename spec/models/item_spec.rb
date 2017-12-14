@@ -13,7 +13,7 @@ RSpec.describe Item, type: :model do
 
   describe "attributes" do
     it 'should have a name and completed attribute' do
-      expect(item).to have_attributes(name: item.name)
+      expect(item).to have_attributes(name: item.name, completed: false)
     end
   end  
 end

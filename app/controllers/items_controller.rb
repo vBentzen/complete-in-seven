@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   def create
     current_user
     item = current_user.items.new(item_params)
+    item.completed = false
 
     if item.save
       flash[:notice] = "Item was added to your list."
@@ -13,8 +14,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @user = current_user
-    item = @user.items.find(params[:id])
+    current_user
+    item = current_user.items.find(params[:id])
 
     if item.destroy
       flash[:notice] = "Item is completed and remove from list. GOOD JOB!"
@@ -25,7 +26,21 @@ class ItemsController < ApplicationController
     end
   end
 
+  def update
+    current_user
+    item = current_user.items.find(params[:id])
+    item.completed = true
+
+    if item.save
+      flash[:notice] = "Item is done. gj mate."
+      redirect_to root_path
+    else
+      flash[:alert] = "try again."
+      redirect_to root_path
+    end
+  end
+
   def item_params
-    params.require(:item).permit(:name)
+    params.require(:item).permit(:name, :completed)
   end
 end

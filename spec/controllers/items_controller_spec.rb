@@ -36,4 +36,18 @@ RSpec.describe ItemsController, type: :controller do
       expect(response).to redirect_to(root_path)
     end
   end
+
+  describe "PUT update" do
+    before do
+      sign_in user
+      create :item
+    end
+    it 'should update item with completed = true' do
+      put :update, id: item.id, item: {name: User.name, user: user, completed: true}
+
+      expect(item.completed).to be true
+    end
+  end
+
 end
+
