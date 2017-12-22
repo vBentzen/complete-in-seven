@@ -4,7 +4,7 @@ RSpec.describe ItemsController, type: :controller do
   let(:item) { create(:item) }
   let(:user) { create(:user) }
   
-  let (:item) { create :item, user: user }
+  let!(:item) { create :item, user: user }
  
 
 
@@ -40,11 +40,10 @@ RSpec.describe ItemsController, type: :controller do
   describe "PUT update" do
     before do
       sign_in user
-      create :item
     end
     it 'should update item with completed = true' do
-      put :update, id: item.id, item: {name: User.name, user: user, completed: true}
-
+      put :update, id: item.id, item: {completed: true}
+      item.reload
       expect(item.completed).to be true
     end
   end

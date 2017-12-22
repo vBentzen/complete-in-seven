@@ -1,20 +1,19 @@
 class ItemsController < ApplicationController
   def create
-    current_user
-    item = current_user.items.new(item_params)
-    item.completed = false
+    @item = current_user.items.new(item_params)
+    @item.completed = false
 
-    if item.save
+    if @item.save
       flash[:notice] = "Item was added to your list."
+      redirect_to root_path
     else
       flash[:alert] = "There was an error saving the item, please try again."
+      @items = current_user.items.reject {|item| item.created_at.blank?}
+      render "users/show"
     end
-
-    redirect_to root_path
   end
 
   def destroy
-    current_user
     item = current_user.items.find(params[:id])
 
     if item.destroy
@@ -27,11 +26,10 @@ class ItemsController < ApplicationController
   end
 
   def update
-    current_user
-    item = current_user.items.find(params[:id])
-    item.completed = true
+    @item = current_user.items.find(params[:id])
+    @item.completed = true
 
-    if item.save
+    if @item.save
       flash[:notice] = "Item is done. gj mate."
       redirect_to root_path
     else
